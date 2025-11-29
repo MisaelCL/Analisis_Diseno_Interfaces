@@ -1,0 +1,350 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>C&C - Clase & Cita (HTML/CSS/JS)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Topbar -->
+    <div class="app-topbar">
+      <div class="app-topbar-left">
+        <div class="app-topbar-dots"></div>
+        <span id="top-left-label">C&C</span>
+      </div>
+      <div class="app-topbar-right">
+        <span id="top-right-action" class="text-muted"></span>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header class="app-header">
+      <div class="app-logo">C &amp; C</div>
+      <div id="logo-subtitle" class="app-logo-subtitle">
+        Clase &amp; Cita · Universidad
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="app-main">
+      <!-- LOGIN -->
+      <section class="screen screen--active" data-screen="login">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Iniciar sesión</div>
+              <div class="card-subtitle">Conecta con estudiantes de otras carreras</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <form id="login-form" class="form-grid" novalidate>
+              <div class="form-group">
+                <label class="form-label" for="login-matricula">Matrícula o correo institucional</label>
+                <input id="login-matricula" class="input" type="text" placeholder="A01234567 / tu@universidad.edu" required />
+                <div id="login-matricula-error" class="error-text" style="display:none;"></div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="login-password">Contraseña</label>
+                <input id="login-password" class="input" type="password" placeholder="••••••••" required />
+                <div id="login-password-error" class="error-text" style="display:none;"></div>
+              </div>
+              <div class="mt-2">
+                <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+              </div>
+              <button type="button" class="btn btn-secondary mt-1" data-nav="register">
+                Registrarme
+              </button>
+            </form>
+            <p class="text-center text-muted mt-2">
+              Al continuar aceptas las reglas de convivencia de tu comunidad universitaria.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- REGISTER -->
+      <section class="screen" data-screen="register">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Crear cuenta</div>
+              <div class="card-subtitle">Solo estudiantes con correo institucional</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <form id="register-form" class="form-grid" novalidate>
+              <div class="form-group">
+                <label class="form-label" for="reg-universidad">Universidad / comunidad</label>
+                <input id="reg-universidad" class="input" type="text" placeholder="Ej. Universidad Central" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="reg-matricula">Matrícula</label>
+                <input id="reg-matricula" class="input" type="text" placeholder="A01234567" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="reg-nombre">Nombre o apodo</label>
+                <input id="reg-nombre" class="input" type="text" placeholder="Ej. Ana, Luis, Karla..." required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="reg-genero">Género</label>
+                <select id="reg-genero" class="select" required>
+                  <option value="">Selecciona una opción</option>
+                  <option value="Mujer">Mujer</option>
+                  <option value="Hombre">Hombre</option>
+                  <option value="No binario">No binario</option>
+                  <option value="Prefiero no decirlo">Prefiero no decirlo</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="reg-nacimiento">Fecha de nacimiento</label>
+                <input id="reg-nacimiento" class="input" type="date" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="reg-carrera">Carrera / licenciatura</label>
+                <input id="reg-carrera" class="input" type="text" placeholder="Ej. Psicología" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="reg-correo">Correo institucional</label>
+                <input id="reg-correo" class="input" type="email" placeholder="tu@universidad.edu" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="reg-password">Contraseña</label>
+                <input id="reg-password" class="input" type="password" placeholder="Crea una contraseña" required />
+              </div>
+              <div class="mt-2">
+                <button type="submit" class="btn btn-primary">Crear cuenta</button>
+              </div>
+              <button type="button" class="btn btn-secondary mt-1" data-nav="login">
+                Ya tengo cuenta
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- INTERESTS -->
+      <section class="screen" data-screen="interests">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Elige tus intereses</div>
+              <div class="card-subtitle">Nos ayudan a encontrar mejores coincidencias</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="text-muted">
+              Selecciona al menos <strong>3</strong> intereses que te definan:
+            </p>
+            <div id="interests-container" class="interests-grid mt-2"></div>
+            <p id="interests-error" class="error-text mt-1" style="display:none;">
+              Selecciona al menos 3 intereses para continuar.
+            </p>
+            <div class="mt-2">
+              <button id="interests-continue" class="btn btn-primary" type="button">
+                Continuar
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DISCOVER -->
+      <section class="screen" data-screen="discover">
+        <div class="discover-topbar">
+          <div class="discover-me">
+            <div class="me-avatar"></div>
+            <div>
+              <div style="font-size:0.9rem;font-weight:600;">Tú</div>
+              <div class="me-meta">Psicología · 4° semestre</div>
+            </div>
+          </div>
+          <button class="btn-ghost" type="button" data-nav="profile">
+            Mi perfil
+          </button>
+        </div>
+        <article class="swipe-card">
+          <div id="swipe-photo" class="swipe-photo"></div>
+          <div class="swipe-info-row">
+            <div class="swipe-name-age">
+              <div id="swipe-name" class="swipe-name"></div>
+              <div id="swipe-degree" class="swipe-degree"></div>
+            </div>
+            <div id="swipe-age" class="swipe-age"></div>
+          </div>
+          <div class="swipe-arrows">
+            <button class="swipe-arrow" type="button" data-swipe="prev">&#8249;</button>
+            <button class="swipe-arrow" type="button" data-swipe="next">&#8250;</button>
+          </div>
+        </article>
+        <div class="swipe-actions">
+          <button class="btn-circle" type="button" data-action="skip">✕</button>
+          <button class="btn-circle btn-circle-main" type="button" data-action="like">♥</button>
+          <button class="btn-circle" type="button" data-nav="chat">💬</button>
+        </div>
+        <p id="swipe-status" class="swipe-status">Mostrando perfiles...</p>
+      </section>
+
+      <!-- CHAT -->
+      <section class="screen" data-screen="chat">
+        <div class="card chat-wrapper">
+          <div class="chat-header">
+            <div class="chat-avatar"></div>
+            <div>
+              <div class="chat-meta-name">Andrew · Arquitectura</div>
+              <div class="chat-meta-status">En línea · mismo campus</div>
+            </div>
+          </div>
+          <div id="chat-bubbles" class="chat-bubbles">
+            <div class="bubble-row received">
+              <div class="chat-bubble received">
+                Hola, vi que también te gusta el cine. ¿Ya viste la última de suspenso?
+              </div>
+            </div>
+            <div class="bubble-row sent">
+              <div class="chat-bubble sent">
+                ¡Sí! Me encantó el final. ¿Te gustaría ir al cine un día después de clases?
+              </div>
+            </div>
+          </div>
+          <form id="chat-form" class="chat-input-row">
+            <input id="chat-input" class="chat-input" type="text" placeholder="Escribe un mensaje..." />
+            <button class="chat-send-btn" type="submit">➤</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- PROFILE -->
+      <section class="screen" data-screen="profile">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Mi perfil</div>
+              <div class="card-subtitle">Configura cómo te ven los demás</div>
+            </div>
+            <button class="btn-ghost" type="button" data-nav="settings">
+              Configuración
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="profile-section">
+              <div class="profile-header">
+                <div class="profile-photo"></div>
+                <div class="profile-main">
+                  <h2>Ana · 20</h2>
+                  <p>Psicología · 4° semestre · Universidad Central</p>
+                </div>
+              </div>
+              <div>
+                <p class="text-muted">
+                  Me gusta escuchar a las personas, el cine de suspenso y tomar café mientras estudio.
+                  Busco conocer estudiantes de otras carreras para amistad o algo más.
+                </p>
+              </div>
+              <div>
+                <div class="form-label">Intereses</div>
+                <div class="profile-tags mt-1">
+                  <span class="tag-pill">Psicología</span>
+                  <span class="tag-pill">Ilustración</span>
+                  <span class="tag-pill">Cine</span>
+                  <span class="tag-pill">Club de Debate</span>
+                </div>
+              </div>
+              <div>
+                <div class="form-label">Acciones rápidas</div>
+                <div class="profile-tags mt-1">
+                  <button class="btn btn-small btn-secondary" type="button">Compartir perfil</button>
+                  <button class="btn btn-small btn-secondary" type="button">Bloquear perfil</button>
+                  <button class="btn btn-small btn-secondary" type="button">Editar información</button>
+                  <button class="btn btn-small btn-secondary" type="button" data-nav="login">Cerrar sesión</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section class="screen" data-screen="settings">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Configuración</div>
+              <div class="card-subtitle">Personaliza tu experiencia</div>
+            </div>
+            <button class="btn-ghost" type="button" data-nav="profile">
+              Volver
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="settings-list">
+              <div class="setting-item">
+                <div class="setting-left">
+                  <div class="setting-icon">👤</div>
+                  <div class="setting-text">
+                    <div class="setting-title">Editar perfil</div>
+                    <div class="setting-desc">Nombre, foto, biografía</div>
+                  </div>
+                </div>
+              </div>
+              <div class="setting-item">
+                <div class="setting-left">
+                  <div class="setting-icon">🔒</div>
+                  <div class="setting-text">
+                    <div class="setting-title">Cuenta privada</div>
+                    <div class="setting-desc">Solo personas compatibles pueden ver tu perfil completo</div>
+                  </div>
+                </div>
+                <div class="toggle" data-toggle="privacy">
+                  <div class="toggle-knob"></div>
+                </div>
+              </div>
+              <div class="setting-item">
+                <div class="setting-left">
+                  <div class="setting-icon">🔔</div>
+                  <div class="setting-text">
+                    <div class="setting-title">Notificaciones</div>
+                    <div class="setting-desc">Coincidencias, mensajes y anuncios</div>
+                  </div>
+                </div>
+                <div class="toggle toggle--on" data-toggle="notifications">
+                  <div class="toggle-knob"></div>
+                </div>
+              </div>
+              <div class="setting-item">
+                <div class="setting-left">
+                  <div class="setting-icon">⚠️</div>
+                  <div class="setting-text">
+                    <div class="setting-title">Reportar problema</div>
+                    <div class="setting-desc">Seguridad, uso indebido o bug</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Bottom nav -->
+    <nav class="bottom-nav" id="bottom-nav" style="display:none;">
+      <button type="button" data-nav-bottom="discover" class="bottom-nav--active">
+        <span>👤</span>
+        <span>Descubrir</span>
+      </button>
+      <button type="button" data-nav-bottom="chat">
+        <span>💬</span>
+        <span>Chats</span>
+      </button>
+      <button type="button" data-nav-bottom="profile">
+        <span>⚙️</span>
+        <span>Perfil</span>
+      </button>
+    </nav>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
